@@ -27,7 +27,7 @@ public class QuestManager : MonoBehaviour
             return;
         }
 
-        if (currentQuest != npcQuest) ;
+        if (currentQuest != npcQuest);
         {
             Debug.Log("이미 다른 퀘스트를 진행 중입니다.");
             return;
