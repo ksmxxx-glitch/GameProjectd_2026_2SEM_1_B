@@ -25,6 +25,8 @@ public class PickupItem : MonoBehaviour
 
     private SimpleInventory inventory;
 
+    private AchievementManager achievementManager;
+
     void Start()
     {
         startPosition = transform.position;
@@ -32,6 +34,7 @@ public class PickupItem : MonoBehaviour
 
     private void Awake()
     {
+        achievementManager = FindFirstObjectByType<AchievementManager>();
         questManager = FindFirstObjectByType<QuestManager>();
         inventory = FindFirstObjectByType<SimpleInventory>();
     }

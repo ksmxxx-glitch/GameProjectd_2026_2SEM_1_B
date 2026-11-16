@@ -35,8 +35,11 @@ public class SimpleInventory : MonoBehaviour
     private int seletedIndex = -1;              //4개
     // -1 : 선택 없음, 0 첫번째 슬롯, 1 두번째 슬롯 => 4
 
+    private AchievementManager achievementManager;
+
     private void Awake()
     {
+        achievementManager = FindFirstObjectByType<AchievementManager>();
         playerController = GetComponent<PlayerController>();
         playerPickup = GetComponent<PlayerPickup>();
 
@@ -225,6 +228,11 @@ public class SimpleInventory : MonoBehaviour
         }
 
         playerHealth.Heal(healAmount);
+
+        if (achievementManager  != null)
+        {
+            achievementManager.ItemUsed(item.itemName);
+        }
         RemoveItem(item.itemName, 1);
     }
 
@@ -234,7 +242,13 @@ public class SimpleInventory : MonoBehaviour
 
         string itemName = items[selectedIndex].itemName;
 
-        RemoveItem(itemName, 1);
+       if (RemoveItem(itemName, 1))
+        {
+            if (achievementManager != null)
+            {
+                achievementManager.ItemDropped();
+            }
+        }
     }
 
     internal int GetItemAmount(string targetItemName)
