@@ -8,7 +8,9 @@ public enum PlayerState
 
     PickUp,
 
-    Inventory
+    Inventory,
+
+    Attack
 
 }
 
